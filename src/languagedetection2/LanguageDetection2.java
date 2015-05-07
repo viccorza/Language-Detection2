@@ -27,7 +27,8 @@ public class LanguageDetection2 {
             String text=snippet.getDescription();
             detector.append(text);
             String lang = detector.detect();
-            System.out.println( "Frase: " + text + "-- Esta en idioma: " + lang);   
+            System.out.println( "Frase: " + text + "-- Esta en idioma: " + lang);
+            dbm.grabarIdioma(snippet, lang);
         }
     }
     

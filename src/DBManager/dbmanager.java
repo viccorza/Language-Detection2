@@ -25,7 +25,7 @@ public class dbmanager {
         try {
             cn = getConnection();
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("select * from unoporuno_snippet LIMIT 100");
+            ResultSet rs = st.executeQuery("select * from unoporuno_snippet");
             while (rs.next()) {
                 unoporuno_snippet snippet = new unoporuno_snippet();
                 snippet.setId(rs.getInt("id"));
@@ -58,5 +58,25 @@ public class dbmanager {
         return cn;
     }
     
-    public void grabarIdioma()
+    public void grabarIdioma(unoporuno_snippet snippet, String Language)
+    {
+        Connection cn;
+        Statement st;
+        ResultSet rs;
+        try {
+            cn = getConnection();
+            st = cn.createStatement();
+            String tsql;
+            // A partir de los datos del mensaje construye
+            // la cadena SQL para realizar su inseri�n
+            tsql = "update unoporuno.unoporuno_snippet set unoporuno_snippet_lang = ";
+            tsql += "'" + Language + "' WHERE id = ";
+            tsql += snippet.getId();
+            st.execute( tsql );
+            cn.close();
+            System.out.println( "Idioma de la frase grabado en la base de datos");
+        }
+        catch( Exception e ) { e.printStackTrace(); }
+    }
 }
+
