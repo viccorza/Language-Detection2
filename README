@@ -1,0 +1,2 @@
+Esta es una aplicación que detecta el lenguaje de los snippets de la base de datos Unoporuno
+e inserta en el campo unoporuno_snippets_lang el idioma del snippet.
